@@ -18,5 +18,6 @@ def search_movie(request, title):
         status = 405
     else:
         movies = Movie.objects.filter(title__icontains=title)
+        # TODO : verifier si la liste est vide
         context = {'movies': movies}
     return render(request, 'movie/index.html', context, status=status)
