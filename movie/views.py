@@ -11,12 +11,12 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def search_movie(request,movie_name):
+def search_movie(request, title):
     status = 200
     context = {}
     if request.method != 'GET':
         status = 405
     else:
-        movies = Movie.objects.filter(title__icontains=movie_name)
-        context = {'movies':movies}
+        movies = Movie.objects.filter(title__icontains=title)
+        context = {'movies': movies}
     return render(request, 'movie/index.html', context, status=status)
