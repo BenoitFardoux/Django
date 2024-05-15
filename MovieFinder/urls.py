@@ -6,5 +6,5 @@ from movie import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
-    path("movies/<str:title>", views.search_movie, name='search_movie')
+    path("movies/", views.search_movie, name='search_movie')
 ]

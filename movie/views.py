@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
@@ -16,8 +17,9 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
-def search_movie(request, title):
+def search_movie(request):
     status = 200
+    title = request.GET.get('title', '')
     context = {}
     if request.method != 'GET':
         status = 405
@@ -31,12 +33,14 @@ def search_movie(request, title):
             if response.status_code == 200:
                 data = response.json()
                 for movie in data["Search"]:
-                    imdb_id = movie["imdb_id"]
+                    imdb_id = movie["imdbID"]
                     request_result = requests.get("http://www.omdbapi.com/?i="
-                                                  + imdb_id + "&apikey=" + os.getenv("OMDB_API_KEY")).json()
+                                                  + imdb_id + "&apikey=" + os.getenv("OMDB_API_KEY"))
                     if request_result.status_code == 200:
-                        movie_to_add = Movie(title=movie["Title"], year=movie["Year"], poster=movie["Poster"],
-                                      genre=request_result['Genre'])
+                        request_result = request_result.json()
+                        movie_to_add = Movie(title=movie["Title"], release_date=datetime.strptime(request_result["Released"],
+                                                                                         "%d %b %Y"), poster=movie["Poster"],
+                                             genre=request_result['Genre'])
                         movies.append(movie_to_add)
                         movie_to_add.save()
         context = {'movies': movies}
