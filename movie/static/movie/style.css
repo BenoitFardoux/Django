@@ -1,0 +1,32 @@
+body{
+    padding: 0 2rem;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+input[type="text"]{
+    border-radius: 0.5rem;
+    padding: 0.5em 1em;
+}
+
+input[type="text"]:focus{
+    outline: none;
+}
+
+button{
+    padding: 0.5em 1em;
+    border-radius: 0.5rem;
+}
+
+main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
