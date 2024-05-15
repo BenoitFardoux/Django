@@ -25,7 +25,6 @@ def search_movie(request):
         status = 405
     else:
         movies = Movie.objects.filter(title__icontains=title)
-        # TODO : verifier si la liste est vide
         if len(movies) == 0:
             movies = []
             url = "http://www.omdbapi.com/?s=" + str(title) + "&apikey=" + os.getenv("OMDB_API_KEY")
