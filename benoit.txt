@@ -1,0 +1,4 @@
+Dans ce projet j'ai réalisé la partie "back-end" du projet , j'ai pu mieux comprendre le fonctinnement de django malgré
+le temps entre les séances, compte tenu du projet de fin d'année nous n'avons pas eu le temps de réaliser les tests du projet
+(j'avoue avoir oublié comment faire les tests). j'ai pu revoir le fonctionnement de python et le fonctionnement même du langage
+j'ai l'habitude de développer en spring boot ce qui m'a quand même aider avec le concept de REST.

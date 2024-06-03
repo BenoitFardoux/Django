@@ -37,8 +37,9 @@ def search_movie(request):
                                                   + imdb_id + "&apikey=" + os.getenv("OMDB_API_KEY"))
                     if request_result.status_code == 200:
                         request_result = request_result.json()
-                        movie_to_add = Movie(title=movie["Title"], release_date=datetime.strptime(request_result["Released"],
-                                                                                         "%d %b %Y"), poster=movie["Poster"],
+                        movie_to_add = Movie(title=movie["Title"],
+                                             release_date=datetime.strptime(request_result["Released"],
+                                                                            "%d %b %Y"), poster=movie["Poster"],
                                              genre=request_result['Genre'])
                         movies.append(movie_to_add)
                         movie_to_add.save()
